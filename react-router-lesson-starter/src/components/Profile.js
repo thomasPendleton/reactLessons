@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Route, Link, useRouteMatch } from "react-router-dom";
+import { Route, Link, useRouteMatch, Redirect } from "react-router-dom";
 import { selectCurrentUser, selectIsLoggedIn } from "../features/session/sessionSlice";
 import EditProfileForm from "./EditProfileForm";
 
@@ -11,8 +11,10 @@ export default function Profile () {
   // call useRouteMatch() to get the url and path
   const {url, path} = useRouteMatch();
   // use loggedIn to return a Redirect
-  console.log(url, path);
-
+ 
+  if(!loggedIn){
+    return <Redirect to='/sign-up' />
+  }
 
   return (
     <main>
